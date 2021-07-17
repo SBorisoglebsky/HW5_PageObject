@@ -42,7 +42,7 @@ public class PracticeFormTest {
         $("#subjectsInput").setValue("Hindi").pressEnter();
 
 
-        $("#uploadPicture").uploadFile(new File("img/guru.PNG"));
+        $("#uploadPicture").uploadFile(new File("src/test/resources/guru.PNG"));
         $("#currentAddress").setValue("Moscow, Lenina street 2");
 
         $("#react-select-3-input").setValue("Haryana").pressEnter();

@@ -27,7 +27,7 @@ public class RegistrationPageWithPageObject {
 
     String
             gender = "Female",
-            day = "30",
+            day = "31",
             month = "January",
             year = "1976",
             subject = "Hindi",

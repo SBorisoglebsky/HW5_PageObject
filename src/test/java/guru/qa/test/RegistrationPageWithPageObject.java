@@ -26,7 +26,7 @@ public class RegistrationPageWithPageObject {
     String phoneNumber = faker.phoneNumber().subscriberNumber(10);
 
     String
-            gender = "Male",
+            gender = "Female",
             day = "30",
             month = "January",
             year = "1976",

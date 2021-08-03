@@ -2,17 +2,14 @@ package guru.qa.test;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import guru.qa.pages.RegistrationPage;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static java.lang.String.format;
 
@@ -30,7 +27,7 @@ public class RegistrationPageWithPageObject {
 
     String
             gender = "Male",
-            day = "30",
+            day = "22",
             month = "January",
             year = "1976",
             subject = "Hindi",

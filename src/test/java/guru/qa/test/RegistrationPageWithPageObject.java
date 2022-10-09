@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static java.lang.String.format;
 
 public class RegistrationPageWithPageObject {
@@ -36,13 +37,12 @@ public class RegistrationPageWithPageObject {
             state = "Haryana",
             city = "Karnal";
 
-    Map<String, String > expectedData = new HashMap<>()
-    {{
+    Map<String, String> expectedData = new HashMap<>() {{
         put("Student Name", firstName + " " + lastName);
         put("Student Email", email);
         put("Gender", gender);
         put("Mobile", phoneNumber);
-        put("Date of Birth", day + " " + month + ","+ year);
+        put("Date of Birth", day + " " + month + "," + year);
         put("Subjects", subject);
         put("Hobbies", hobbies);
         put("Picture", pic);
@@ -54,18 +54,24 @@ public class RegistrationPageWithPageObject {
     @BeforeAll
     static void setup() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.startMaximized = true;
+        Configuration.browserSize = "1920x1080";
+        Configuration.holdBrowserOpen = true;
+
     }
 
     @Test
-    void positiveFillTest2(){
+    void positiveFillTest2() {
         registrationPage.openPage();
+
+        //remove footer
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
 
         registrationPage.typeTestField(firstName, lastName, email, phoneNumber)
                 .typeWrapper(gender, hobbies)
                 .setBirthDay(day, month, year)
                 .setSubject(subject)
-                .uploadFile(format("src/test/resources/%s",pic))
+                .uploadFile(format("src/test/resources/%s", pic))
                 .setAddress(add)
                 .setStateAndCity(state, city)
                 .clickSubmit();
@@ -74,7 +80,7 @@ public class RegistrationPageWithPageObject {
 
         ElementsCollection lines = $$(".table-responsive tbody tr").snapshot();
 
-        registrationPage.CheckResults(lines,expectedData);
+        registrationPage.CheckResults(lines, expectedData);
 
     }
 

@@ -8,19 +8,24 @@ import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class PracticeFormTest {
     @BeforeAll
     static void setup() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.startMaximized = true;
+        //Configuration.startMaximized = true;
+        Configuration.browserSize = "1920x1080";
     }
 
     @Test
     void positiveFillTest(){
         open("/automation-practice-form");
+        //remove footer
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
+
         String eMail = "SBorisoglebsky@gmail.com";
         String phoneNumber ="9165556677";
 

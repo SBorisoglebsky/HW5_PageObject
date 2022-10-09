@@ -10,8 +10,8 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static java.lang.String.format;
 
 public class RegistrationPage {
@@ -22,6 +22,8 @@ public class RegistrationPage {
     public void openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(FORM_TITLE));
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
     }
     public void checkPageName() {
         $("#example-modal-sizes-title-lg").shouldHave(text(RESULTS_TITLE));
@@ -36,7 +38,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage typeWrapper(String gender, String hobbies) {
-
+        $("#genterWrapper").scrollIntoView(true);
         $("#genterWrapper").$(byText(gender)).click();
         $("#hobbiesWrapper").$(byText(hobbies)).click();
         return this;
@@ -60,12 +62,15 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage setStateAndCity (String state, String city){
+        $("#state").scrollIntoView(false);
         $("#react-select-3-input").setValue(state).pressEnter();
         $("#react-select-4-input").setValue(city).pressEnter();
         return this;
     }
     public RegistrationPage clickSubmit (){
-        $("#submit").scrollTo().click();
+        //$("#submit").scrollTo().click();
+        $("#submit").scrollIntoView(true);
+        $("#submit").click();
         return this;
     }
 

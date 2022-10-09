@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:5.22.2",
+            'com.codeborne:selenide:6.8.1',
             "com.github.javafaker:javafaker:1.0.2",
             "org.assertj:assertj-core:3.19.0",
             "com.fasterxml.jackson.core:jackson-databind:2.10.3",

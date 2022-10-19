@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$$;
@@ -18,7 +19,7 @@ public class RegistrationPageWithPageObject {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
-    Faker faker = new Faker();
+    Faker faker = new Faker(new Locale("de"));
 
     String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),

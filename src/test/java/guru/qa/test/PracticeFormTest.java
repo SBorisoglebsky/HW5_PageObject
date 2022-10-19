@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static guru.qa.data.TestData.lastName;
 
-
 public class PracticeFormTest {
     @BeforeAll
     static void setup() {
@@ -22,7 +21,7 @@ public class PracticeFormTest {
     }
 
     @Test
-    void positiveFillTest(){
+    void positiveFillTest() {
 
         open("/automation-practice-form");
         //remove footer
@@ -30,7 +29,7 @@ public class PracticeFormTest {
         executeJavaScript("$('#fixedban').remove()");
 
         String eMail = "SBorisoglebsky@gmail.com";
-        String phoneNumber ="9165556677";
+        String phoneNumber = "9165556677";
 
         $("#firstName").setValue(TestData.firstName);
         $("#lastName").setValue(lastName);
@@ -60,7 +59,7 @@ public class PracticeFormTest {
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
-        $("tbody").$(byText("Student Name")).parent().shouldHave(text(TestData.firstName+" " + lastName));
+        $("tbody").$(byText("Student Name")).parent().shouldHave(text(TestData.firstName + " " + lastName));
         $("tbody").$(byText("Student Email")).parent().shouldHave(text(eMail));
         $("tbody").$(byText("Gender")).parent().shouldHave(text("Male"));
         $("tbody").$(byText("Mobile")).parent().shouldHave(text(phoneNumber));

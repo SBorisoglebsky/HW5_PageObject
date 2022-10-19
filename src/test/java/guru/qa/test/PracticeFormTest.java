@@ -1,6 +1,7 @@
 package guru.qa.test;
 
 import com.codeborne.selenide.Configuration;
+import guru.qa.data.TestData;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,8 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static guru.qa.data.TestData.lastName;
+
 
 public class PracticeFormTest {
     @BeforeAll
@@ -21,6 +23,7 @@ public class PracticeFormTest {
 
     @Test
     void positiveFillTest(){
+
         open("/automation-practice-form");
         //remove footer
         executeJavaScript("$('footer').remove()");
@@ -29,8 +32,8 @@ public class PracticeFormTest {
         String eMail = "SBorisoglebsky@gmail.com";
         String phoneNumber ="9165556677";
 
-        $("#firstName").setValue("Serega");
-        $("#lastName").setValue("Borisoglebsky");
+        $("#firstName").setValue(TestData.firstName);
+        $("#lastName").setValue(lastName);
         $("#userEmail").setValue(eMail);
         $("#userNumber").setValue(phoneNumber);
 
@@ -57,7 +60,7 @@ public class PracticeFormTest {
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
-        $("tbody").$(byText("Student Name")).parent().shouldHave(text("Serega Borisoglebsky"));
+        $("tbody").$(byText("Student Name")).parent().shouldHave(text(TestData.firstName+" " + lastName));
         $("tbody").$(byText("Student Email")).parent().shouldHave(text(eMail));
         $("tbody").$(byText("Gender")).parent().shouldHave(text("Male"));
         $("tbody").$(byText("Mobile")).parent().shouldHave(text(phoneNumber));
